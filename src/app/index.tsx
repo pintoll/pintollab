@@ -15,7 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${pretendard.className} ${pretendard.variable}`}>
+      <body
+        className={`prose sm:prose-xl ${pretendard.className} ${pretendard.variable}`}
+      >
         {children}
       </body>
     </html>
