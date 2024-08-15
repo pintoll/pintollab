@@ -5,9 +5,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#3b82f6",
-        secondary: "#ff77b8",
-        tertiary: "#d077e5",
+        primary: "#4a9324",
+        secondary: "#63b5da",
+        tertiary: "#c7f8ff",
+        accent: "#4d7d94",
+        plain: "#BBBBBB",
       },
     },
   },
