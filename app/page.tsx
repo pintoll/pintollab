@@ -8,7 +8,7 @@ export default function Home() {
         Hello
       </Button>
       <Spacer height={30} />
-      <Card>
+      <Card variant="border">
         <h3>역시는 역시나 역시군</h3>
       </Card>
       <article>
