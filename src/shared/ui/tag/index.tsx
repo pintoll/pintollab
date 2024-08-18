@@ -2,17 +2,17 @@ import { forwardRef } from "react";
 import { cva, VariantProps } from "class-variance-authority";
 import { cn, tw } from "@/src/shared/lib";
 
-export const CardVariants = cva(
+export const TagVariants = cva(
   tw`
-  bg-opacity-70 hover:bg-opacity-80
-  w-full px-2 py-1
+  flex justify-center items-center font-medium
   rounded-md
+  px-1 py-1
   `,
   {
     variants: {
       variant: {
-        default: tw`bg-primary text-black`,
-        border: tw`bg-opacity-0 border-2 border-black text-black`,
+        default: tw`text-black hover:bg-gray-500 hover:bg-opacity-20`,
+        selected: tw`bg-black text-white`,
       },
     },
     defaultVariants: {
@@ -21,25 +21,25 @@ export const CardVariants = cva(
   },
 );
 
-interface CardProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof CardVariants> {
+interface TagProps
+  extends React.HTMLAttributes<HTMLSpanElement>,
+    VariantProps<typeof TagVariants> {
   className?: string;
   children?: React.ReactNode;
 }
 
-export const Card = forwardRef<HTMLDivElement, CardProps>(
+export const Tag = forwardRef<HTMLSpanElement, TagProps>(
   ({ variant, className, children, ...props }, ref) => {
     return (
-      <div
+      <span
         ref={ref}
-        className={cn(CardVariants({ variant }), className)}
+        className={cn(TagVariants({ variant }), className)}
         {...props}
       >
         {children}
-      </div>
+      </span>
     );
   },
 );
 
-Card.displayName = "Card";
+Tag.displayName = "Tag";
