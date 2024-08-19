@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 import Flask from "@/public/svg/Erlenmeyer_Flask.svg";
-
 import { Button } from "@/src/shared/ui";
 
 const LogoPart = () => {
@@ -18,7 +17,7 @@ const LogoPart = () => {
         />
         <span className="text-lg font-semibold text-secondary">Pintollab</span>
       </Link>
-      <Link href="#hire-me">
+      <Link href="#contact">
         <Button variant="secondary" size="sm">
           Contact
         </Button>
