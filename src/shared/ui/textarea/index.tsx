@@ -5,10 +5,10 @@ import { cva, VariantProps } from "class-variance-authority";
 import { cn, tw } from "@/src/shared/lib";
 
 export const TextareaVariants = cva(
-  tw`block w-full px-3 py-3 rounded-md border-2 border-black
+  tw`block w-full h-[12.5rem] px-3 py-3 rounded-md border-2 border-black
   placeholder-gray-400
   focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary
-  text-base
+  text-base resize-none
 `,
   {
     variants: {
@@ -34,7 +34,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     const [hasValue, setHasValue] = useState(false);
 
     const labelStyles = hasValue
-      ? tw`absolute left-[6%] top-0 -translate-x-1/2 -translate-y-1/2 bg-white px-2 text-sm font-semibold`
+      ? tw`absolute left-[3%] top-0 -translate-y-1/2 bg-white px-2 text-sm font-semibold`
       : tw`hidden`;
 
     const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {

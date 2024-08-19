@@ -34,7 +34,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const [hasValue, setHasValue] = useState(false);
 
     const labelStyles = hasValue
-      ? tw`absolute left-[6%] top-0 -translate-x-1/2 -translate-y-1/2 bg-white px-2 text-sm font-semibold`
+      ? tw`absolute left-[3%] top-0 -translate-y-1/2 bg-white px-2 text-sm font-semibold`
       : tw`hidden`;
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
