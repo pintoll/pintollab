@@ -7,7 +7,7 @@ import { Button } from "@/src/shared/ui";
 
 const LogoPart = () => {
   return (
-    <div className="fixed flex h-10 w-full items-center justify-between border-black px-2 py-1 lg:top-4 lg:px-8">
+    <div className="fixed top-0 z-10 flex h-10 w-full items-center justify-between border-black bg-slate-100 px-2 py-6 lg:top-4 lg:bg-transparent lg:px-8">
       <Link href="/" className="flex items-center">
         <Image
           src={Flask}

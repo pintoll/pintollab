@@ -3,7 +3,7 @@ import Category from "./category";
 
 export const Header = () => {
   return (
-    <header className="relative mix-blend-exclusion">
+    <header className="relative">
       <LogoPart />
       <Category />
     </header>

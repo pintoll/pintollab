@@ -1,10 +1,12 @@
 "use client";
 import Link from "next/link";
-
-import { Tag } from "@/src/shared/ui";
 import { usePathname } from "next/navigation";
 
-const verifyPathname = (pathname: string): ("selected" | "default")[] => {
+import { Tag } from "@/src/shared/ui";
+
+type TagVariant = Parameters<typeof Tag>[0]["variant"];
+
+const verifyPathname = (pathname: string): TagVariant[] => {
   return [
     pathname.startsWith("/blog") ? "selected" : "default",
     pathname.startsWith("/product") ? "selected" : "default",
@@ -17,7 +19,7 @@ const Category = () => {
   const [blog, product, openSource] = verifyPathname(pathname);
 
   return (
-    <div className="absolute top-12 flex h-6 w-full items-center justify-center gap-2 px-2 py-1 lg:fixed lg:top-1/2 lg:w-[196px] lg:-translate-y-1/2 lg:flex-col lg:gap-8">
+    <div className="absolute top-12 flex w-full items-center justify-center gap-2 bg-slate-100 px-2 py-1 lg:fixed lg:top-1/2 lg:w-[196px] lg:-translate-y-1/2 lg:flex-col lg:gap-8 lg:bg-transparent">
       <Link href="/blog">
         <Tag variant={blog}>Blog</Tag>
       </Link>

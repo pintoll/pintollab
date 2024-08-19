@@ -6,7 +6,6 @@ export const ButtonVariants = cva(
   tw`
   flex justify-center items-center font-medium
   rounded-md
-  text-lg
   `,
   {
     variants: {
@@ -15,7 +14,7 @@ export const ButtonVariants = cva(
         secondary: tw`bg-primary text-white`,
       },
       size: {
-        sm: tw`px-3 py-[0.35rem]`,
+        sm: tw`px-3 py-[0.35rem] lg:text-lg`,
         md: tw`w-[160px] h-[40px] sm:w-[400px] sm:h-[50px]`,
       },
     },
