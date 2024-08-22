@@ -4,10 +4,8 @@ import { cn, tw } from "@/src/shared/lib";
 
 export const ButtonVariants = cva(
   tw`
-  flex justify-center items-center font-bold
-  bg-opacity-90 hover:bg-opacity-100
+  flex justify-center items-center font-medium
   rounded-md
-  text-[1.125rem]
   `,
   {
     variants: {
@@ -16,13 +14,13 @@ export const ButtonVariants = cva(
         secondary: tw`bg-primary text-white`,
       },
       size: {
-        sm: tw`px-4 py-2`,
+        sm: tw`px-3 py-[0.35rem] lg:text-lg`,
         md: tw`w-[160px] h-[40px] sm:w-[400px] sm:h-[50px]`,
       },
     },
     defaultVariants: {
       variant: "primary",
-      size: "md",
+      size: "sm",
     },
   },
 );

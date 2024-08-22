@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 
 import "./styles/index.css";
 import { pretendard } from "../shared/font";
+import { Header } from "../widget/header";
+import { Contact } from "../widget/contact";
 
 export const metadata: Metadata = {
   title: "Pintollab",
@@ -15,10 +17,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`prose sm:prose-xl ${pretendard.className} ${pretendard.variable}`}
-      >
+      <body className={`${pretendard.className} ${pretendard.variable}`}>
+        <Header />
         {children}
+        <Contact />
       </body>
     </html>
   );
