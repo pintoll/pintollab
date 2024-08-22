@@ -25,6 +25,7 @@ export default function Home() {
         <Image src={Erlenmey} alt="image2" />
         <Image src={Rounded} alt="image" />
       </Wrapper>
+      <div>hellos</div>
     </main>
   );
 }
