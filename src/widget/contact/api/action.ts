@@ -15,7 +15,6 @@ export const sendContact = async (
     if (!name || !email || !content) {
       throw Error("Invalid Form");
     }
-    throw Error("Invalid Form");
     return "Contact Sent!";
   } catch (error) {
     console.log(error);
