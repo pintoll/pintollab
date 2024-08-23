@@ -19,7 +19,7 @@ const Category = () => {
   const [blog, product, openSource] = verifyPathname(pathname);
 
   return (
-    <div className="absolute top-12 flex w-full items-center justify-center gap-2 bg-slate-100 px-2 py-1 lg:fixed lg:top-1/2 lg:w-[196px] lg:-translate-y-1/2 lg:flex-col lg:gap-8 lg:bg-transparent">
+    <div className="absolute top-12 flex w-full items-center justify-center gap-2 px-2 py-1 lg:fixed lg:top-1/2 lg:w-[196px] lg:-translate-y-1/2 lg:flex-col lg:gap-8">
       <Link href="/blog">
         <Tag variant={blog}>Blog</Tag>
       </Link>

@@ -1,4 +1,4 @@
-import { Button, Card, Spacer } from "@/src/shared/ui";
+import { Banner, Button, Card, Spacer } from "@/src/shared/ui";
 import Rounded from "@/public/svg/Rounded.svg";
 import Erlenmey from "@/public/svg/Erlenmeyer_Flask.svg";
 import Image from "next/image";
@@ -25,7 +25,6 @@ export default function Home() {
         <Image src={Erlenmey} alt="image2" />
         <Image src={Rounded} alt="image" />
       </Wrapper>
-      <div>hellos</div>
     </main>
   );
 }
