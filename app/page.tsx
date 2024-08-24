@@ -1,4 +1,4 @@
-import { Button, Card, Spacer } from "@/src/shared/ui";
+import { Banner } from "@/src/shared/ui";
 import Rounded from "@/public/svg/Rounded.svg";
 import Erlenmey from "@/public/svg/Erlenmeyer_Flask.svg";
 import Image from "next/image";
@@ -7,11 +7,12 @@ import { Wrapper } from "@/src/shared/ui/wrapper";
 export default function Home() {
   return (
     <main className="w-full">
+      <Banner
+        subject="5 best practices for preventing chaos in Tailwind CSS"
+        description="October 10, 2023"
+        imageSrc="/image/tailwind.png"
+      />
       <Wrapper>
-        <Card variant="border" className="prose">
-          <h3>역시는 역시나 역시군</h3>
-          adfsafafadfsdf
-        </Card>
         <article className="prose md:prose-xl">
           <h2>Garlic bread with cheese: What the science tells us</h2>
           <p>

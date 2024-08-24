@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import { cva, VariantProps } from "class-variance-authority";
 import { cn, tw } from "@/src/shared/lib";
 
-export const WrapperVariants = cva(tw`w-full px-4 lg:px-[196px] first:pt-24`, {
+export const WrapperVariants = cva(tw`w-full px-4 lg:px-[216px]`, {
   variants: {
     variant: {
       default: tw`flex flex-col items-center`,

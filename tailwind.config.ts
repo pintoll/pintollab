@@ -10,6 +10,10 @@ const config: Config = {
         tertiary: "#c7f8ff",
         accent: "#4d7d94",
       },
+      fontFamily: {
+        kr: ["var(--font-pretendard)"],
+        merri: ["var(--font-merriweather)"],
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],
