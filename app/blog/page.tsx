@@ -3,8 +3,17 @@ import Rounded from "@/public/svg/Rounded.svg";
 import Erlenmey from "@/public/svg/Erlenmeyer_Flask.svg";
 import Image from "next/image";
 import { Wrapper } from "@/src/shared/ui/wrapper";
+import { readdirSync, readFileSync } from "fs";
+import path from "path";
+import matter from "gray-matter";
 
-export default function Home() {
+export default async function Home() {
+  const file = readFileSync(
+    path.join(process.cwd(), "/src/entity/blog/posts/first.mdx"),
+    "utf-8",
+  );
+  const { data, content } = matter(file);
+  console.log(data);
   return (
     <main className="w-full">
       <Wrapper>
