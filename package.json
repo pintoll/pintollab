@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "tsc --esModuleInterop src/entity/post/model/index.ts && node src/entity/post/model/index.js",
+    "prebuild": "tsc --esModuleInterop src/entity/post/model/index.ts && node -r dotenv/config src/entity/post/model/index.js",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -31,6 +31,7 @@
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.19",
     "cssnano": "^7.0.5",
+    "dotenv-cli": "^7.4.2",
     "postcss": "^8",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.5",
