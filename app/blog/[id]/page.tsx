@@ -1,6 +1,6 @@
 import posts from "@/src/entity/post/model/posts.json";
 import { getS3ImageUrl } from "@/src/shared/image";
-import { Banner } from "@/src/shared/ui";
+import { Banner, Wrapper } from "@/src/shared/ui";
 import { format } from "date-fns";
 import { MDXRemote } from "next-mdx-remote/rsc";
 
@@ -33,9 +33,9 @@ export default function Blog({ params }: { params: { id: number } }) {
         date={format(new Date(data.date), "MMMM d, yyyy")}
         imageSrc={getS3ImageUrl(`blog/${data.thumbnail}`)}
       />
-      <div className="prose-2xl px-20 pt-10">
+      <Wrapper variant="block" className="prose md:prose-lg lg:prose-2xl">
         <MDXRemote source={content} />
-      </div>
+      </Wrapper>
     </>
   );
 }

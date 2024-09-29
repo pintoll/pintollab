@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "tsc --esModuleInterop src/entity/post/model/index.ts && node -r dotenv/config src/entity/post/model/index.js",
+    "localbuild": "tsc --esModuleInterop src/entity/post/model/index.ts && node -r dotenv/config src/entity/post/model/index.js",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

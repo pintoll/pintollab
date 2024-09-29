@@ -6,6 +6,7 @@ export const WrapperVariants = cva(tw`w-full px-4 lg:px-[216px]`, {
   variants: {
     variant: {
       default: tw`flex flex-col items-center`,
+      block: tw`block pt-20`,
     },
   },
   defaultVariants: {
