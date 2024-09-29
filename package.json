@@ -4,14 +4,19 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "tsc --esModuleInterop src/entity/blog/model/index.ts && node src/entity/blog/model/index.js",
+    "prebuild": "tsc --esModuleInterop src/entity/post/model/index.ts && node src/entity/post/model/index.js",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.658.1",
+    "@aws-sdk/credential-providers": "^3.658.1",
+    "@aws-sdk/s3-request-presigner": "^3.658.1",
+    "@aws-sdk/util-format-url": "^3.654.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
     "next": "14.2.5",
     "next-mdx-remote": "^5.0.0",

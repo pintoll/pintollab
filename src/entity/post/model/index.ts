@@ -2,11 +2,11 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-const POSTS_PATH = path.join(
-  "/mnt/c/Users/Asus/OneDrive/문서/obsidian/dashboard/",
-  "2. Area/Blog",
-);
-const JSON_PATH = path.join(process.cwd(), "src/entity/blog/model/");
+const DEAFULT_PATH = "/mnt/c/Users/Asus/OneDrive/문서/obsidian/blog/Blog/";
+const POSTS_PATH = path.join(DEAFULT_PATH, "posts");
+const IMAGES_PATH = path.join(DEAFULT_PATH, "images");
+
+const JSON_PATH = path.join(process.cwd(), "src/entity/post/model/");
 
 type Tags = {
   [key: string]: number[];
@@ -17,13 +17,17 @@ function makePostJson() {
     .readdirSync(POSTS_PATH, "utf-8")
     .filter((file) => path.extname(file) === ".md");
 
+  console.log(files);
+
   const posts = files.map((fileName) => {
     const file = fs.readFileSync(path.join(POSTS_PATH, fileName), "utf-8");
     return matter(file);
   });
 
-  posts.forEach(({ content }) => {
-    content.replace(/!\[\[(.*?)\]\]/g, (_, content) => {
+  // Replace image with "Image"
+  posts.forEach((post) => {
+    post.content = post.content.replace(/!\[\[(.*?)\]\]/g, (_, content) => {
+      console.log(content);
       return "Image"; // #TODO
     });
   });

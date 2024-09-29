@@ -8,12 +8,6 @@ import path from "path";
 import matter from "gray-matter";
 
 export default async function Home() {
-  const file = readFileSync(
-    path.join(process.cwd(), "/src/entity/blog/posts/first.mdx"),
-    "utf-8",
-  );
-  const { data, content } = matter(file);
-  console.log(data);
   return (
     <main className="w-full">
       <Wrapper>

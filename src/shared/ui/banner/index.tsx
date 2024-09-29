@@ -8,7 +8,7 @@ type Descriptor = {
 
 interface BannerProps extends React.HTMLAttributes<HTMLDivElement> {
   subject?: string | Descriptor;
-  description?: string | Descriptor;
+  date?: string | Descriptor;
   imageSrc?: string;
 }
 
@@ -23,12 +23,12 @@ const parseToDescriptor = (
 export const Banner = ({
   className,
   subject,
-  description,
+  date,
   imageSrc,
   children,
 }: BannerProps) => {
   const title = parseToDescriptor(subject);
-  const desc = parseToDescriptor(description);
+  const desc = parseToDescriptor(date);
 
   return (
     <div
