@@ -1,7 +1,6 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-
 import {
   getS3FolderContents,
   getS3ImageUrl,
@@ -25,8 +24,6 @@ async function makePostJson() {
     .readdirSync(POSTS_PATH, "utf-8")
     .filter((file) => path.extname(file) === ".md");
 
-  console.log(files);
-
   // get posts from markdown files
   const posts = files.map((fileName) => {
     const file = fs.readFileSync(path.join(POSTS_PATH, fileName), "utf-8");
@@ -36,12 +33,24 @@ async function makePostJson() {
   // image upload logic
   const imageKeys: string[] = [];
 
-  // add image keys to imageKeys
+  // parsing content
   posts.forEach((post) => {
-    post.content = post.content.replace(/!\[\[(.*?)\]\]/g, (_, content) => {
-      imageKeys.push(content);
-      return `![${content}](${getS3ImageUrl(`blog/${content}`)})`;
-    });
+    post.content = post.content
+      // image
+      .replace(/!\[\[(.*?)\]\]/g, (_, content) => {
+        imageKeys.push(content);
+        return `![${content}](${getS3ImageUrl(`blog/${content}`)})`;
+      })
+      // math block
+      .replace(/\$\$(.*?)\$\$/g, (_, content) => {
+        const math = content.replace(/\{/g, "\\{").replace(/\}/g, "\\}");
+        return `<MathBlock>${math}</MathBlock>`;
+      })
+      // math inline
+      .replace(/\$(.*?)\$/g, (_, content) => {
+        const math = content.replace(/\{/g, "\\{").replace(/\}/g, "\\}");
+        return `<MathInline>${math}</MathInline>`;
+      });
   });
 
   // add thumbnail to imageKeys

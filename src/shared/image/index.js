@@ -39,7 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.uploadImages = void 0;
+exports.uploadLocalImages = void 0;
 exports.getS3ImageUrl = getS3ImageUrl;
 exports.getS3FolderContents = getS3FolderContents;
 var client_s3_1 = require("@aws-sdk/client-s3");
@@ -50,10 +50,14 @@ var region = process.env.AWS_REGION;
 function getS3ImageUrl(key) {
     return "https://".concat(bucketName, ".s3.").concat(region, ".amazonaws.com/").concat(key);
 }
-var s3Client = new client_s3_1.S3Client({ region: region, credentials: {
+var s3Client = new client_s3_1.S3Client({
+    region: region,
+    credentials: {
         accessKeyId: process.env.AWS_ACCESS_KEY_ID,
         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    } });
+    },
+});
+// For prebuild
 function getS3FolderContents(bucketName, folderPath) {
     return __awaiter(this, void 0, void 0, function () {
         var command, data, keys, error_1;
@@ -71,7 +75,7 @@ function getS3FolderContents(bucketName, folderPath) {
                     return [4 /*yield*/, s3Client.send(command)];
                 case 2:
                     data = _b.sent();
-                    keys = (_a = data.Contents) === null || _a === void 0 ? void 0 : _a.filter(function (item) { return item.Key !== folderPath; }).map(function (item) { var _a; return (_a = item.Key) === null || _a === void 0 ? void 0 : _a.replace("".concat(folderPath, "/"), '').trim(); }).filter(function (key) { return key !== undefined && key !== ''; });
+                    keys = (_a = data.Contents) === null || _a === void 0 ? void 0 : _a.filter(function (item) { return item.Key !== folderPath; }).map(function (item) { var _a; return (_a = item.Key) === null || _a === void 0 ? void 0 : _a.replace("".concat(folderPath, "/"), "").trim(); }).filter(function (key) { return key !== undefined && key !== ""; });
                     return [2 /*return*/, keys || []];
                 case 3:
                     error_1 = _b.sent();
@@ -82,7 +86,7 @@ function getS3FolderContents(bucketName, folderPath) {
         });
     });
 }
-var uploadImages = function (_a) { return __awaiter(void 0, [_a], void 0, function (_b) {
+var uploadLocalImages = function (_a) { return __awaiter(void 0, [_a], void 0, function (_b) {
     var uploadPromises, error_2;
     var bucketName = _b.bucketName, folderPath = _b.folderPath, keys = _b.keys;
     return __generator(this, function (_c) {
@@ -122,4 +126,4 @@ var uploadImages = function (_a) { return __awaiter(void 0, [_a], void 0, functi
         }
     });
 }); };
-exports.uploadImages = uploadImages;
+exports.uploadLocalImages = uploadLocalImages;

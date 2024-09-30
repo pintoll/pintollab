@@ -57,18 +57,31 @@ function makePostJson() {
                     files = fs_1.default
                         .readdirSync(POSTS_PATH, "utf-8")
                         .filter(function (file) { return path_1.default.extname(file) === ".md"; });
-                    console.log(files);
                     posts = files.map(function (fileName) {
                         var file = fs_1.default.readFileSync(path_1.default.join(POSTS_PATH, fileName), "utf-8");
                         return (0, gray_matter_1.default)(file);
                     });
                     imageKeys = [];
+                    // parsing content
                     posts.forEach(function (post) {
-                        post.content = post.content.replace(/!\[\[(.*?)\]\]/g, function (_, content) {
+                        post.content = post.content
+                            // image
+                            .replace(/!\[\[(.*?)\]\]/g, function (_, content) {
                             imageKeys.push(content);
                             return "![".concat(content, "](").concat((0, image_1.getS3ImageUrl)("blog/".concat(content)), ")");
+                        })
+                            // math block
+                            .replace(/\$\$(.*?)\$\$/g, function (_, content) {
+                            var math = content.replace(/\{/g, "\\{").replace(/\}/g, "\\}");
+                            return "<MathBlock>".concat(math, "</MathBlock>");
+                        })
+                            // math inline
+                            .replace(/\$(.*?)\$/g, function (_, content) {
+                            var math = content.replace(/\{/g, "\\{").replace(/\}/g, "\\}");
+                            return "<MathInline>".concat(math, "</MathInline>");
                         });
                     });
+                    // add thumbnail to imageKeys
                     posts.forEach(function (post) {
                         if (!imageKeys.includes(post.data.thumbnail)) {
                             imageKeys.push(post.data.thumbnail);
@@ -77,10 +90,12 @@ function makePostJson() {
                     return [4 /*yield*/, (0, image_1.getS3FolderContents)(bucketName, "blog")];
                 case 1:
                     savedKeys = _a.sent();
-                    console.log(savedKeys, imageKeys);
                     newKeys = imageKeys.filter(function (key) { return !savedKeys.includes(key); });
-                    console.log(newKeys);
-                    return [4 /*yield*/, (0, image_1.uploadImages)({ bucketName: bucketName, folderPath: IMAGES_PATH, keys: newKeys })];
+                    return [4 /*yield*/, (0, image_1.uploadLocalImages)({
+                            bucketName: bucketName,
+                            folderPath: IMAGES_PATH,
+                            keys: newKeys,
+                        })];
                 case 2:
                     _a.sent();
                     tags = posts.reduce(function (acc, post) {
@@ -91,6 +106,7 @@ function makePostJson() {
                         });
                         return acc;
                     }, {});
+                    // make json files
                     fs_1.default.writeFileSync(path_1.default.join(JSON_PATH, "posts.json"), JSON.stringify(posts));
                     fs_1.default.writeFileSync(path_1.default.join(JSON_PATH, "tags.json"), JSON.stringify(tags));
                     return [2 /*return*/];
