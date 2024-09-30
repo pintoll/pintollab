@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import "./styles/index.css";
-import { merriweather, pretendard } from "../shared/font";
+import { merriweather, pretendard, roboto } from "../shared/font";
 import { Header } from "../widget/header";
 import { Contact } from "../widget/contact";
 
@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${pretendard.className} ${pretendard.variable} ${merriweather.variable}`}
+        className={`${roboto.className} ${pretendard.variable} ${merriweather.variable}`}
       >
         <Header />
         {children}

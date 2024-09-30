@@ -13,6 +13,7 @@ const config: Config = {
       fontFamily: {
         kr: ["var(--font-pretendard)"],
         merri: ["var(--font-merriweather)"],
+        roboto: ["var(--font-roboto)"],
       },
     },
   },
