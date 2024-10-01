@@ -1,5 +1,4 @@
-import { Banner } from "@/src/shared/ui";
-import { Wrapper } from "@/src/shared/ui/wrapper";
+import { Banner, Wrapper } from "@/src/shared/ui";
 
 export default function Home() {
   return (

@@ -1,12 +1,10 @@
 import posts from "@/src/entity/post/model/posts.json";
 import { getS3ImageUrl } from "@/src/shared/image";
-import { Banner, Wrapper } from "@/src/shared/ui";
-import { MathInline, MathBlock } from "@/src/shared/ui/katex";
+import { Banner, Wrapper, MathInline, MathBlock } from "@/src/shared/ui";
 import { format } from "date-fns";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypePrettyCode from "rehype-pretty-code";
-import remarkFootnotes from "remark-footnotes";
 
 export async function generateStaticParams() {
   return posts.map(({ data }) => data.id);
@@ -46,7 +44,10 @@ export default async function Blog({ params }: { params: { id: number } }) {
         date={format(new Date(data.date), "MMMM d, yyyy")}
         imageSrc={getS3ImageUrl(`blog/${data.thumbnail}`)}
       />
-      <Wrapper variant="block" className="prose md:prose-lg lg:prose-2xl">
+      <Wrapper
+        variant="block"
+        className="prose max-w-none md:prose-lg md:max-w-none"
+      >
         <MDXRemote
           source={content}
           components={components}
