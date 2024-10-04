@@ -40,7 +40,7 @@ export const ContactForm = () => {
       {error && (
         <div className="flex w-full items-center justify-center text-center">
           <span className="w-full font-semibold text-red-500">
-            ⨉ {state}. Try <a href=""></a>gain!
+            ⨉ {state}. Try again!
           </span>
         </div>
       )}

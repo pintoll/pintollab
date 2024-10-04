@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import "./styles/index.css";
 import { merriweather, pretendard, roboto } from "../shared/font";
 import { Header } from "../widget/header";
-import { Contact } from "../widget/contact";
+import { Footer } from "../widget/footer";
 
 export const metadata: Metadata = {
   title: "Pintollab",
@@ -22,7 +22,7 @@ export default function RootLayout({
       >
         <Header />
         {children}
-        <Contact />
+        <Footer />
       </body>
     </html>
   );

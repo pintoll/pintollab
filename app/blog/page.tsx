@@ -1,9 +1,3 @@
-import { Wrapper } from "@/src/shared/ui";
-
-export default async function Home() {
-  return (
-    <main className="w-full">
-      <Wrapper>Hello</Wrapper>
-    </main>
-  );
+export default function BlogPage() {
+  return <div>Blog</div>;
 }

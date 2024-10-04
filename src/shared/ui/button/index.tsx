@@ -1,49 +1,56 @@
-import { forwardRef } from "react";
-import { cva, VariantProps } from "class-variance-authority";
-import { cn, tw } from "@/src/shared/lib";
+import * as React from "react"
+import { Slot } from "@radix-ui/react-slot"
+import { cva, type VariantProps } from "class-variance-authority"
 
-export const ButtonVariants = cva(
-  tw`
-  flex justify-center items-center font-medium
-  rounded-md
-  `,
+import { cn } from "@/src/shared/lib"
+
+const buttonVariants = cva(
+  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-stone-950 dark:focus-visible:ring-stone-300",
   {
     variants: {
       variant: {
-        primary: tw`bg-secondary text-white`,
-        secondary: tw`bg-primary text-white`,
+        default: "bg-stone-900 text-stone-50 hover:bg-stone-900/90 dark:bg-stone-50 dark:text-stone-900 dark:hover:bg-stone-50/90",
+        destructive:
+          "bg-red-500 text-stone-50 hover:bg-red-500/90 dark:bg-red-900 dark:text-stone-50 dark:hover:bg-red-900/90",
+        outline:
+          "border border-stone-200 bg-white hover:bg-stone-100 hover:text-stone-900 dark:border-stone-800 dark:bg-stone-950 dark:hover:bg-stone-800 dark:hover:text-stone-50",
+        secondary:
+          "bg-stone-100 text-stone-900 hover:bg-stone-100/80 dark:bg-stone-800 dark:text-stone-50 dark:hover:bg-stone-800/80",
+        ghost: "hover:bg-stone-100 hover:text-stone-900 dark:hover:bg-stone-800 dark:hover:text-stone-50",
+        link: "text-stone-900 underline-offset-4 hover:underline dark:text-stone-50",
       },
       size: {
-        sm: tw`px-3 py-[0.35rem] lg:text-lg`,
-        md: tw`w-[160px] h-[40px] sm:w-[400px] sm:h-[50px]`,
+        default: "h-10 px-4 py-2",
+        sm: "h-9 rounded-md px-3",
+        lg: "h-11 rounded-md px-8",
+        icon: "h-10 w-10",
       },
     },
     defaultVariants: {
-      variant: "primary",
-      size: "sm",
+      variant: "default",
+      size: "default",
     },
-  },
-);
+  }
+)
 
-interface ButtonProps
+export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof ButtonVariants> {
-  className?: string;
-  children?: React.ReactNode;
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean
 }
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant, size, className, children, ...props }, ref) => {
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : "button"
     return (
-      <button
+      <Comp
+        className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
-        className={cn(ButtonVariants({ variant, size }), className)}
         {...props}
-      >
-        {children}
-      </button>
-    );
-  },
-);
+      />
+    )
+  }
+)
+Button.displayName = "Button"
 
-Button.displayName = "Button";
+export { Button, buttonVariants }

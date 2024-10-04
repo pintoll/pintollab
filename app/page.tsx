@@ -1,14 +1,33 @@
-import { Banner, Wrapper } from "@/src/shared/ui";
+import {
+  Wrapper,
+  Button,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/src/shared/ui";
 
-export default function Home() {
+import { Github, Linkedin, Twitter } from "lucide-react";
+import {
+  Main,
+  Introduction,
+  Featured,
+  Latest,
+  Contact,
+} from "@/src/widget/landing";
+import Link from "next/link";
+
+export default function DeveloperBlogLanding() {
   return (
-    <main className="w-full">
-      <Banner
-        subject="5 best practices for preventing chaos in Tailwind CSS"
-        date="October 10, 2023"
-        imageSrc="/image/tailwind.png"
-      />
-      <Wrapper>hello</Wrapper>
-    </main>
+    <div className="flex min-h-screen flex-col">
+      <main className="flex-1">
+        <Main />
+        <Introduction />
+        <Featured />
+        <Latest />
+        <Contact />
+      </main>
+    </div>
   );
 }

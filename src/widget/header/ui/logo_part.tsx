@@ -33,7 +33,7 @@ const LogoPart = () => {
         <span className="text-lg font-semibold text-secondary">Pintollab</span>
       </Link>
       <Link href="#contact">
-        <Button variant="secondary" size="sm">
+        <Button variant="outline" size="default">
           Contact
         </Button>
       </Link>
